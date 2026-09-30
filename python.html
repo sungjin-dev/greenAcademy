@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python & Cloud Web App Master Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&family=Merriweather:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #002D62;
+            --accent: #00E5FF;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --code-bg: #1e293b;
+            --step-bg: #f1f5f9;
+            --warning: #ef4444;
+        }
+
+        * { box-sizing: border-box; }
+        body { 
+            background-color: #cbd5e1; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 80px; 
+            margin: 0; 
+            padding: 60px 0; 
+            align-items: center; 
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .slide-container {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 750px;
+            overflow-y: auto;
+            padding: 50px 80px;
+            position: relative;
+            width: 1280px;
+            flex-shrink: 0;
+        }
+
+        .slide-container::before {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            content: '';
+            height: 8px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        /* 슬라이드 타이틀 */
+        .slide-title { 
+            font-size: 38px; 
+            font-weight: 700; 
+            color: var(--primary); 
+            margin-bottom: 25px; 
+            border-left: 10px solid var(--accent); 
+            padding-left: 20px; 
+            font-family: 'Merriweather', serif; 
+        }
+
+        h3 { font-size: 24px; color: var(--primary); margin: 20px 0 12px 0; font-weight: 700; }
+        p, li { font-size: 18px; line-height: 1.6; color: #334155; }
+
+        /* 표 및 그리드 */
+        .tile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; margin-top: 20px; }
+        .tile { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; border-top: 6px solid var(--primary); }
+        .tile i { font-size: 32px; color: #0284c7; margin-bottom: 15px; }
+
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+        .process-card { background: var(--step-bg); padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; position: relative; }
+        .process-card span { position: absolute; top: -15px; left: 20px; background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+
+        /* 코드 블록 */
+        .code-box { 
+            background-color: var(--code-bg); 
+            border-radius: 10px; 
+            color: #e2e8f0; 
+            font-family: 'Fira Code', monospace; 
+            padding: 20px; 
+            margin: 15px 0; 
+            font-size: 15px; 
+            border-left: 5px solid var(--accent); 
+            position: relative; 
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        .code-box::after { content: 'Python / Code'; position: absolute; top: 0; right: 0; background: #475569; padding: 4px 12px; font-size: 11px; color: #cbd5e1; border-radius: 0 10px 0 10px; }
+        .indent { display: inline-block; width: 20px; }
+
+        .highlight-red { color: var(--warning); font-weight: 700; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+        /* 제목/종료 슬라이드 */
+        .title-slide { background: var(--primary); color: white; justify-content: center; align-items: center; text-align: center; }
+        .title-slide h1 { font-size: 58px; margin-bottom: 20px; font-family: 'Merriweather', serif; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <!-- 슬라이드 1: 메인 커버 -->
+    <div class="slide-container title-slide">
+        <i class="fa-brands fa-python" style="font-size: 90px; color: var(--accent); margin-bottom: 25px;"></i>
+        <h1>Python & Cloud Web App Master</h1>
+        <p style="font-size: 24px; color: var(--accent); margin-top: 0;">파이썬 필수 문법부터 클라우드 DB 연동 웹앱 제작까지</p>
+    </div>
+
+   
+    <!-- 슬라이드 3: 개발 환경 설정 (Python) -->
+    <div class="slide-container">
+        <h2 class="slide-title">Step 1. 파이썬(Python) 설치 프로세스</h2>
+        <div class="process-grid">
+            <div class="process-card">
+                <span>1</span>
+                <h3>공식 홈페이지 접속</h3>
+                <p>python.org/downloads 접속 후 <b>Download Python</b> 버튼 클릭</p>
+            </div>
+            <div class="process-card" style="border: 2px solid var(--warning);">
+                <span>2</span>
+                <h3>설치 시 필수 체크</h3>
+                <p class="highlight-red">★ Add Python to PATH 체크!</p>
+                <p>체크해야 터미널에서 파이썬 명령어를 정상 인식합니다.</p>
+            </div>
+            <div class="process-card">
+                <span>3</span>
+                <h3>설치 완료 및 확인</h3>
+                <p>터미널(CMD) 열기 ➔ <code>python --version</code> 입력</p>
+            </div>
+        </div>
+        <div class="code-box" style="margin-top: 30px;"># 터미널 실행 결과 예시
+Python 3.12.x</div>
+    </div>
+
+    <!-- 슬라이드 4: 개발 환경 설정 (VS Code) -->
+    <div class="slide-container">
+        <h2 class="slide-title">Step 2. VS Code 설치 및 라이브러리 준비</h2>
+        <div class="process-grid">
+            <div class="process-card">
+                <span>1</span>
+                <h3>VS Code 설치</h3>
+                <p>code.visualstudio.com 접속 후 설치</p>
+            </div>
+            <div class="process-card">
+                <span>2</span>
+                <h3>Extension 설정</h3>
+                <p>'Python' 및 'Korean Language Pack' 검색 후 설치</p>
+            </div>
+            <div class="process-card">
+                <span>3</span>
+                <h3>작업 공간 세팅</h3>
+                <p>새 폴더 생성 ➔ Open Folder 실행 ➔ `app.py` 생성</p>
+            </div>
+        </div>
+        <div class="two-column" style="margin-top: 25px;">
+            <div>
+                <h3><i class="fa-solid fa-terminal"></i> 필수 라이브러리 설치</h3>
+                <div class="code-box">pip install streamlit
+pip install firebase-admin</div>
+            </div>
+            <div>
+                <h3><i class="fa-solid fa-lightbulb"></i> 모듈 및 라이브러리 개념</h3>
+                <p><b>pip:</b> 외부 패키지 설치 도구<br><b>import:</b> 작성된 모듈을 코드 내로 가져오는 키워드 (예: <code>import streamlit as st</code>)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 슬라이드 5: 파이썬 기초 문법 (변수와 컬렉션) -->
+    <div class="slide-container">
+        <h2 class="slide-title">Step 3. 변수와 컬렉션 (List & Dict)</h2>
+        <div class="two-column">
+            <div>
+                <h3>1. 변수와 기본 자료형</h3>
+                <p>데이터를 담는 상자입니다. 동적 타이핑을 지원합니다.</p>
+                <div class="code-box">name = "성적 관리 대시보드"  # str
+user_count = 25              # int
+average_score = 88.5          # float
+is_active = True              # bool</div>
+            </div>
+            <div>
+                <h3>2. 컬렉션 (List & Dictionary)</h3>
+                <p>여러 데이터를 구조화하여 관리합니다.</p>
+                <div class="code-box"># 리스트: 순서가 있는 목록
+scores = [90, 80, 100]
+scores.append(95)
+
+# 딕셔너리: Key-Value 쌍
+student = {"name": "김파이", "score": 95}
+print(student["name"])  # 출력: 김파이</div>
+            </div>
+        </div>
+    </div>
+ <div class="slide-container">
+        <h2 class="slide-title">Step 4. 논리적인 흐름 제어</h2>
+        <div class="two-column">
+            <div>
+                <h3>1. 조건문 (If-Else)</h3>
+                <p>상황에 따라 다른 코드를 실행합니다.</p>
+                <div class="code-box">
+                    if user == "admin":<br>
+                    <span class="indent"></span>print("관리자님 안녕하세요")<br>
+                    else:<br>
+                    <span class="indent"></span>print("일반 사용자입니다")
+                </div>
+            </div>
+            <div>
+                <h3>2. 반복문 (For)</h3>
+                <p>목록에 있는 데이터를 하나씩 꺼내어 반복합니다.</p>
+                <div class="code-box">
+               tasks = ["대시보드 UI 기획", "데이터베이스 연동", "사용자 테스트 진행"]
+
+print("=== 오늘 할 일 목록 ===")
+for task in tasks:
+    print(task)
+                </div>
+            </div>
+        </div>
+        <div style="background: var(--primary); color: white; padding: 20px; border-radius: 12px; margin-top: 30px;">
+            <i class="fa-solid fa-circle-exclamation"></i> <b>파이썬의 생명: 들여쓰기(Indentation)</b><br>
+            `if`나 `for` 다음 줄은 반드시 <kbd>Tab</kbd> 키를 눌러 들여써야 합니다. 들여쓰기가 틀리면 프로그램이 동작하지 않습니다.
+        </div>
+    </div>
+    <!-- 슬라이드 6: 제어문과 함수 -->
+    <div class="slide-container">
+        <h2 class="slide-title">Step 4. 제어문 및 함수(`def`) 정의</h2>
+        <div class="two-column">
+            <div>
+                <h3>1. 조건문 & 반복문</h3>
+                <div class="code-box">students = [{"name": "철수", "score": 85}, {"name": "영희", "score": 55}]
+
+for s in students:
+    if s["score"] >= 60:
+        result = "합격"
+    else:
+        result = "재시험"
+    print(f"{s['name']}: {result}")</div>
+            </div>
+            <div>
+                <h3>2. 함수 재사용</h3>
+                <div class="code-box">def calculate_stats(score_list):
+    total = sum(score_list)
+    avg = total / len(score_list)
+    return total, avg
+
+total, avg = calculate_stats([90, 80, 100])
+print(f"총점: {total}, 평균: {avg:.1f}")</div>
+            </div>
+        </div>
+        <div style="background: var(--primary); color: white; padding: 15px 20px; border-radius: 10px; margin-top: 15px;">
+            <i class="fa-solid fa-circle-exclamation"></i> <b>핵심: 들여쓰기(Indentation)</b> — 파이썬은 <kbd>Tab</kbd> 들여쓰기가 규칙입니다.
+        </div>
+    </div>
+
+
+<div class="slide-container">
+        <h2 class="slide-title">Step 5. Streamlit 웹 서비스 제작 기술</h2>
+        <div class="two-column">
+            <div>
+                <h3>화면 출력 기능</h3>
+                <ul style="line-height: 2;">
+                    <li><b>st.title():</b> 가장 큰 메인 제목</li>
+                    <li><b>st.info():</b> 파란색 알림 박스 출력</li>
+                    <li><b>st.success():</b> 초록색 성공 메시지</li>
+                    <li><b>st.columns():</b> 화면 가로 분할 레이아웃</li>
+                </ul>
+            </div>
+            <div>
+                <h3>데이터 입력 & 상태 관리</h3>
+                <ul style="line-height: 2;">
+                    <li><b>st.text_input():</b> 텍스트 입력 칸</li>
+                    <li><b>st.button():</b> 클릭 이벤트 발생</li>
+                    <li><b>st.form():</b> 여러 입력을 한 번에 전송</li>
+                    <li><b>st.session_state:</b> 새로고침 후에도 로그인 상태 유지</li>
+                </ul>
+                streamlit run app.py
+            </div>
+        </div>
+    </div>
+    <!-- 슬라이드 7: Streamlit 레이아웃 & State -->
+    <div class="slide-container">
+        <h2 class="slide-title">Step 5. Streamlit 웹 인터페이스 & Session State</h2>
+        <div class="two-column">
+            <div>
+                <h3>화면 레이아웃 구성</h3>
+                <div class="code-box">import streamlit as st
+
+st.title("🚀 나의 첫 웹앱")
+st.info("파이썬만으로 제작하는 UI")
+
+col1, col2 = st.columns(2)
+with col1:
+    st.success("왼쪽 영역")
+with col2:
+    st.write("오른쪽 영역")</div>
+            </div>
+            <div>
+                <h3>세션 상태 메모리 (State)</h3>
+                <div class="code-box"># 새로고침 시 데이터 유지
+if "user_list" not in st.session_state:
+    st.session_state.user_list = []
+
+with st.form("input_form"):
+    name = st.text_input("이름")
+    if st.form_submit_button("등록") and name:
+        st.session_state.user_list.append(name)</div>
+            </div>
+        </div>
+    </div>
+
+<div class="slide-container">
+  <div class="two-column">
+    <div class="code-box">
+import streamlit as st  <br>
+
+tasks = [<br>
+    "1. API 스펙 문서 작성",<br>
+    "2. 프론트엔드 컴포넌트 개발",<br>
+    "3. 배포 파이프라인(CI/CD) 구축"<br>
+]
+
+st.subheader("📌 금일 할 일 목록")<br>
+
+for task in tasks:<br>
+    # border=True를 주면 각 반복 요소가 단정한 상자로 감싸집니다.<br>
+    with st.container(border=True):<br>
+        st.write(task)
+
+
+        </div></div></div>
+
+<div class="slide-container">
+  <div class="two-column">
+    <div class="code-box">
+       import streamlit as st<br>
+
+# 페이지 제목 설정<br>
+st.title("🚀 나의 첫 Streamlit 앱")<br>
+
+# 텍스트 출력<br>
+st.write("Streamlit을 이용해 만든 웹 애플리케이션입니다.")<br>
+
+# 사용자 입력 받기<br>
+name = st.text_input("이름을 입력하세요:")<br>
+
+# 버튼 클릭 이벤트<br>
+if st.button("인사하기"):<br>
+    if name:<br>
+        st.success(f"안녕하세요, {name}님!")<br>
+    else:<br>
+        st.warning("이름을 입력해주세요.")<br>
+
+    </div></div></div>
+    <!-- 슬라이드 8: Firebase DB 연동 -->
+    <div class="slide-container">
+        <h2 class="slide-title">Step 6. Firebase 클라우드 DB 연동</h2>
+        <div class="two-column">
+            <div>
+                <h3>Firebase 인프라 설정</h3>
+                <ul style="line-height: 1.8;">
+                    <li>1. Firebase Console ➔ 새 프로젝트 생성</li>
+                    <li>2. Firestore Database 활성화 (테스트 모드)</li>
+                    <li>3. 서버 위치: <code>asia-northeast3 (서울)</code></li>
+                    <li>4. 비공개 키 JSON 발급 ➔ <code>key.json</code> 저장</li>
+                </ul>
+            </div>
+            <div>
+                <h3>파이썬 연동 코드</h3>
+                <div class="code-box">import firebase_admin
+from firebase_admin import credentials, firestore
+
+cred = credentials.Certificate("key.json")
+if not firebase_admin._apps:
+    firebase_admin.initialize_app(cred)
+
+db = firestore.client()</div>
+                <p style="font-size: 14px; color: #64748b;">※ <code>key.json</code>은 <code>app.py</code>와 같은 경로에 있어야 합니다.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Slide 12 (Previously 11): Firebase Setup -->
+<div class="slide-container" id="slide12">
+    <h2 class="slide-title">Step 3-1. 클라우드 DB 인프라 구축</h2>
+    <div class="content-area">
+        <ul style="list-style: none; padding: 0;">
+            <li style="background: var(--primary); color: white; padding: 20px; margin-bottom: 10px; border-radius: 10px;">1. Firebase Console 접속 및 <b>새 프로젝트 생성</b></li>
+            <li style="background: var(--primary); color: white; padding: 20px; margin-bottom: 10px; border-radius: 10px;">2. Firestore Database <b>(테스트 모드)</b> 활성화</li>
+            <li style="background: var(--primary); color: white; padding: 20px; margin-bottom: 10px; border-radius: 10px;">3. 서버 위치: <b>asia-northeast3 (서울)</b> 선택</li>
+            <li style="background: var(--primary); color: white; padding: 20px; margin-bottom: 10px; border-radius: 10px;">4. 서비스 계정 메뉴에서 <b>비공개 키(JSON) 발급</b> 및 저장</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Slide 13 (Previously 12): Firebase Connect Code -->
+<div class="slide-container" id="slide13">
+    <h2 class="slide-title">Step 3-2. 파이썬-Firebase 연결</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="code-box">
+                from firebase_admin import credentials, firestore<br>
+                import firebase_admin<br><br>
+                cred = credentials.Certificate("key.json")<br>
+                if not firebase_admin._apps:<br>
+                <span class="indent">....</span>firebase_admin.initialize_app(cred)<br>
+                db = firestore.client()
+            </div>
+            <div class="warning-box" style="background:#fffbeb; color:#854d0e; border-color:#fef08a;">
+                <strong>연결 팁!</strong><br>
+                <code>key.json</code> 파일이 <code>app.py</code>와 같은 폴더에 있어야 연결이 성공합니다.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 14 (Previously 13): CRUD - Create & Read -->
+<div class="slide-container" id="slide14">
+    <h2 class="slide-title">Step 4-1. 데이터 저장과 조회 (C/R)</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="tile">
+                <h3>저장 (Create)</h3>
+                <div class="code-box" style="margin:0;">
+                    db.collection("todos").add({<br>
+                    <span class="indent">....</span>"task": task_value<br>
+                    })
+                </div>
+            </div>
+            <div class="tile">
+                <h3>조회 (Read)</h3>
+                <div class="code-box" style="margin:0;">
+                    docs = db.collection("todos").stream()<br>
+                    for d in docs:<br>
+                    <span class="indent">....</span>todo = d.to_dict()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 15 (Previously 14): CRUD - Update & Delete -->
+<div class="slide-container" id="slide15">
+    <h2 class="slide-title">Step 4-2. 데이터 수정과 삭제 (U/D)</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3>문서 ID의 중요성</h3>
+                <p>수정과 삭제는 상자의 고유 이름인 <b>ID</b>를 알아야 합니다.</p>
+                <div class="code-box">
+                    # 삭제하기<br>
+                    db.collection("todos").doc(doc.id).delete()
+                </div>
+            </div>
+            <div class="tile" style="border-top-color: var(--accent);">
+                <i class="fa-solid fa-id-card"></i>
+                <p><code>doc.id</code>를 사용해 특정 데이터를 정확히 조준합니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 슬라이드 7: 실전 프로젝트 - 다이어리 구축 (Code) -->
+    <div class="slide-container">
+        <h2 class="slide-title">다이어리 구축: 통합 프로젝트</h2>
+        <p>지금까지 배운 <b>DB CRUD + Streamlit Layout + Logic</b>을 결합합니다.</p>
+        <div class="code-box" style="font-size: 13px;">
+            # 1. 입력 폼 만들기<br>
+            with st.form("diary_input"):<br>
+            <span class="indent"></span>content = st.text_input("오늘의 일기")<br>
+            <span class="indent"></span>submit = st.form_submit_button("기록하기")<br><br>
+            <span class="indent"></span>if submit and content:<br>
+            <span class="indent"></span><span class="indent"></span>db.collection("diary").add({"text": content, "date": "2024-05-20"})<br>
+            <span class="indent"></span><span class="indent"></span>st.success("저장 완료!"); st.rerun()<br><br>
+            # 2. 목록 출력 및 삭제<br>
+            docs = db.collection("diary").stream()<br>
+            for doc in docs:<br>
+            <span class="indent"></span>col1, col2 = st.columns([8, 2])<br>
+            <span class="indent"></span>col1.info(doc.to_dict()["text"])<br>
+            <span class="indent"></span>if col2.button("삭제", key=doc.id):<br>
+            <span class="indent"></span><span class="indent"></span>db.collection("diary").document(doc.id).delete()<br>
+            <span class="indent"></span><span class="indent"></span>st.rerun()
+        </div>
+    </div>
+
+
+    <!-- Slide 7: Master Code (Part 2) -->
+    <div class="slide-container" style="height: auto; padding-bottom: 50px;">
+        <h2 class="slide-title">다이어리 Full Code (2/2)</h2>
+        <p>로그인 세션 및 회원가입 로직</p>
+        <div class="code-box" style="font-size: 13px;">
+            if "login" not in st.session_state: st.session_state["login"] = False<br><br>
+            if st.session_state["login"]:<br>
+            <span class="indent"></span>st.title("나만의 다이어리")<br>
+            <span class="indent"></span>if st.button("로그아웃"): st.session_state["login"] = False; st.rerun()<br>
+            <span class="indent"></span>miso()<br>
+            else:<br>
+            <span class="indent"></span>tab1, tab2 = st.tabs(["로그인", "회원가입"])<br>
+            <span class="indent"></span>with tab1:<br>
+            <span class="indent"></span><span class="indent"></span>l_id = st.text_input("아이디", key="l_id")<br>
+            <span class="indent"></span><span class="indent"></span>l_pw = st.text_input("비번", type="password", key="l_pw")<br>
+            <span class="indent"></span><span class="indent"></span>if st.button("로그인"):<br>
+            <span class="indent"></span><span class="indent"></span><span class="indent"></span>u = db.collection("users").document(l_id).get()<br>
+            <span class="indent"></span><span class="indent"></span><span class="indent"></span>if u.exists and u.to_dict()["password"] == l_pw:<br>
+            <span class="indent"></span><span class="indent"></span><span class="indent"></span><span class="indent"></span>st.session_state["login"] = True; st.rerun()<br>
+            <span class="indent"></span>with tab2:<br>
+            <span class="indent"></span><span class="indent"></span>n_id = st.text_input("새 아이디", key="n_id")<br>
+            <span class="indent"></span><span class="indent"></span>n_pw = st.text_input("새 비번", type="password", key="n_pw")<br>
+            <span class="indent"></span><span class="indent"></span>if st.button("가입하기"):<br>
+            <span class="indent"></span><span class="indent"></span><span class="indent"></span>db.collection("users").document(n_id).set({"password": n_pw})<br>
+            <span class="indent"></span><span class="indent"></span><span class="indent"></span>st.success("회원가입 완료!")
+        </div>
+    </div>
+<!-- New Slide 7: Application Example (Full Code) -->
+<div class="slide-container" id="slide7">
+    <h2 class="slide-title">응용 예제: 실시간 한 줄 메모장 (사이드메뉴) 📝</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <p>입력(사이드바)과 출력(메인)이 결합된 전체 구조입니다.</p>
+                <div class="code-box">
+                    # 1. 사이드바: 데이터 입력부<br>
+                    with st.sidebar:<br>
+                    <span class="indent">....</span>st.header("메모 작성")<br>
+                    <span class="indent">....</span>name = st.text_input("작성자")<br>
+                    <span class="indent">....</span>msg = st.text_input("메모 내용")<br>
+                    <span class="indent">....</span>if st.button("등록"):<br>
+                    <span class="indent">....</span><span class="indent">....</span>db.collection("memos").add({"user": name, "text": msg})<br>
+                    <span class="indent">....</span><span class="indent">....</span>st.rerun()<br><br>
+                    # 2. 메인: 데이터 출력부<br>
+                    st.title("📌 실시간 메모 게시판")<br>
+                    docs = db.collection("memos").stream()<br>
+                    for doc in docs:<br>
+                    <span class="indent">....</span>m = doc.to_dict()<br>
+                    <span class="indent">....</span>st.info(f"**{m['user']}**: {m['text']}")
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="run-box" style="background: #f0fdf4; border-color: #4ade80;">
+                    <h3 style="color: #166534;"><i class="fa-solid fa-layer-group"></i> 레이아웃 전략</h3>
+                    <p style="font-size: 16px;">사이드바(Sidebar)를 활용하면 메인 공간을 넓게 사용하여 리스트 가독성을 높일 수 있습니다.</p>
+                </div>
+                <div class="image-wrapper" style="background: #f1f5f9; border: 2px dashed #cbd5e1; height: 250px; flex-direction: column;">
+                    <i class="fa-solid fa-columns" style="font-size: 60px; color: var(--primary); margin-bottom: 15px;"></i>
+                    <p style="text-align: center; font-size: 15px;">입력과 출력을 분리한<br><b>전문적인 앱 디자인</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- 슬라이드 8: 보안 및 배포 완료 -->
+    <div class="slide-container">
+        <h2 class="slide-title">Step 6. 보안 설정 및 배포</h2>
+        <div class="two-column">
+            <div>
+                <h3><i class="fa-solid fa-lock"></i> .gitignore 필수 설정</h3>
+                <p>GitHub에 비밀번호(key.json)가 공개되지 않도록 보호해야 합니다.</p>
+                <div class="code-box" style="background:#000;">
+                    # .gitignore 파일 내용<br>
+                    key.json<br>
+                    .streamlit/
+                </div>
+            </div>
+            <div>
+                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Streamlit Cloud 출시</h3>
+                <ol>
+                    <li>git config --global user.name "깃허브닉네임"</li>
+                    <li>git config --global user.email "내깃허브계정@email.com"</li>
+                    <li>GitHub 저장소 생성 및 코드 업로드</li>
+                    <li>Streamlit Cloud 연동</li>
+                    <li><b>Secrets</b> 메뉴에 key.json 내용 입력</li>
+                   <li> cred = credentials.Certificate("key.json") -></li> 
+              <li>key_dict = json.loads(st.secrets["firebase_key"]) </li>
+              <li>cred = credentials.Certificate(key_dict)</li>
+                    <li>전 세계 어디서든 접속 가능한 URL 획득!</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 슬라이드 9: 최종 성적 관리 웹앱 프로젝트 -->
+    <div class="slide-container">
+        <h2 class="slide-title">Step 7. Capstone Project: 성적 관리 웹앱</h2>
+        <div class="code-box" style="font-size: 13px;">import streamlit as st
+
+st.title("📊 학생 성적 관리 웹앱")
+
+if "students" not in st.session_state:
+    st.session_state.students = []
+
+# 입력 폼
+with st.form("student_form"):
+    col1, col2 = st.columns(2)
+    with col1: name = st.text_input("학생 이름")
+    with col2: score = st.number_input("점수", min_value=0, max_value=100, value=80)
+    
+    if st.form_submit_button("학생 추가") and name:
+        st.session_state.students.append({"이름": name, "점수": score})
+        st.success(f"{name} 학생 등록 완료!")
+
+# 결과 대시보드
+if st.session_state.students:
+    col_l, col_r = st.columns(2)
+    with col_l: st.table(st.session_state.students)
+    with col_r:
+        avg = sum([s["점수"] for s in st.session_state.students]) / len(st.session_state.students)
+        st.metric("총 학생 수", f"{len(st.session_state.students)}명")
+        st.metric("평균 점수", f"{avg:.1f}점")</div>
+    </div>
+
+   
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+SING_UP = 1
+SIGN_OUT = 2
+SIGN_IN = 3
+SYSTEM_OUT = 0
+
